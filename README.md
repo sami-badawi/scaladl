@@ -1,4 +1,4 @@
-# ScalaDL ideomatic Scala wrapper around deep learning framework JDL
+# ScalaDL Ideomatic Scala Wrapper Around Deep Learning Framework JDL
 
 Deep learning is dominated by excellent Python frameworks.
 There is a new framework [JDL](https://github.com/awslabs/djl) that is a Java wrapper around several of those: Pytorch and TensorFlow.
@@ -11,11 +11,20 @@ Maybe this could be useful for Scala Spark.
 
 Just playing around.
 
-# Libraries etc.
+# How to Run
+
+``` sh
+git clone https://github.com/sami-badawi/scaladl.git
+sbt run
+
+sbt "run ~/Pictures/person_coffee.png"
+```
+
+# Libraries Etc.
 
 Using Scala 3 / Dotty. Just for fun. Will add cross compile to Scala 2.x if useful.
 
-# Thoughts on abstractions
+# Thoughts on Abstractions
 
 Might try to use Cats, Free Monad, Tagless Final or some of that fancy heavy artillery that you should not use in prod. If they are not useful, they will be ripped out again.
 
