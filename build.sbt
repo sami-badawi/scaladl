@@ -11,8 +11,18 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "ai.djl" % "api" % "0.8.0",
       "ai.djl.pytorch" % "pytorch-engine" % "0.8.0",
-      "ai.djl.pytorch" % "pytorch-native-auto" % "1.6.0",
+
       "ai.djl.pytorch" % "pytorch-model-zoo" % "0.8.0",
+      "ai.djl.pytorch" % "pytorch-engine" % "0.8.0",
+      "ai.djl.pytorch" % "pytorch-native-auto" % "1.6.0",
+
+      "ai.djl.tensorflow" % "tensorflow-api" % "0.8.0",
+      "ai.djl.tensorflow" % "tensorflow-engine" % "0.8.0",
+      "ai.djl.tensorflow" % "tensorflow-model-zoo" % "0.8.0",
+      "ai.djl.tensorflow" % "tensorflow-native-cu101" % "2.3.1",
+      "ai.djl.tensorflow" % "tensorflow-native-auto" % "2.3.1",
+      "ai.djl.tensorflow" % "tensorflow-native-cpu" % "2.3.1",
+
       "com.novocode" % "junit-interface" % "0.11" % "test"
     )
   )

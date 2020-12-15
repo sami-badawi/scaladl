@@ -19,21 +19,22 @@ import java.nio.file.Paths
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-/**
- * Direct port of DJL ObjectDetection
- */
+import collection.JavaConverters._
+import scala.util.Try
+
+/** Direct port of DJL ObjectDetection
+  */
 object ObjectDetection {
   val logger = LoggerFactory.getLogger(classOf[LoggerFactory])
 
   val defaultFile = "src/test/resources/dog_bike_car.jpg"
 
-  def saveBoundingBoxImage(img: Image, detection: DetectedObjects) = {
+  def saveBoundingBoxImage(img: Image, detection: DetectedObjects) = Try {
     val outputDir = Paths.get("build/output");
     Files.createDirectories(outputDir);
 
     // Make image copy with alpha channel because original image was jpg
     val newImage = img.duplicate(Image.Type.TYPE_INT_ARGB)
-    // val newImage = newImage1.as[Image]
     newImage.drawBoundingBoxes(detection);
 
     val imagePath = outputDir.resolve("detected-dog_bike_car.png")
@@ -42,11 +43,16 @@ object ObjectDetection {
     logger.info("Detected objects image has been saved in: {}", imagePath)
   }
 
-  def predict(filepath: String): DetectedObjects = {
+  def predict(filepath: String, engineIndexOpt: Option[Int]): DetectedObjects = {
     val imageFile = Paths.get(filepath);
     val img = ImageFactory.getInstance().fromFile(imageFile)
+    val engines = Engine.getAllEngines().asScala.toSeq
+    println(engines.mkString("\n\nAvailable engines:\n", "\n", "\n"))
 
-    val engineName = Engine.getInstance().getEngineName()
+    val engineName = engineIndexOpt.map(n => engines(n)).getOrElse(Engine.getInstance().getEngineName())
+    println(s"Index: $engineIndexOpt engine: $engineName\n\n")
+
+    println(s"Using engine: $engineName")
     val backbone =
       if ("TensorFlow" == engineName) "mobilenet_v2" else "resnet50"
     val criteria =
@@ -70,7 +76,8 @@ object ObjectDetection {
         defaultFile
       else
         args(0)
-    val prediction = predict(filename)
+    val engineIndexOpt = Try(args(1).toInt).toOption
+    val prediction = predict(filename, engineIndexOpt)
     println(s"prediction: $prediction")
     println(s"Detected image from $filename saved to: build/output")
   }

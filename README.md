@@ -7,18 +7,47 @@ JDL has a strong Java flavor. There is an opportunity for to make a thin Scala w
 
 Maybe this could be useful for Scala Spark.
 
-# Status Vaporware
+# Status Starter Project
 
-Just playing around.
+Ported one class, ObjectDetection.java, from DJL to ObjectDetection.Scala.
+
+
 
 # How to Run
 
+
+
 ``` sh
 git clone https://github.com/sami-badawi/scaladl.git
+
+# Run with default image
 sbt run
 
+# Run user supplied image
 sbt "run ~/Pictures/person_coffee.png"
+
+# Run with default image and engine with index 1
+sbt "run src/test/resources/dog_bike_car.jpg 1"
 ```
+
+## Output
+
+```
+Available engines:
+PyTorch
+TensorFlow
+
+prediction: [
+	class: "dog", probability: 0.96922, bounds: [x=0.162, y=0.357, width=0.250, height=0.545]
+	class: "bicycle", probability: 0.66656, bounds: [x=0.152, y=0.249, width=0.570, height=0.558]
+	class: "truck", probability: 0.62682, bounds: [x=0.610, y=0.131, width=0.284, height=0.167]
+]
+Detected image from src/test/resources/dog_bike_car.jpg saved to: build/output
+```
+
+# Issues
+
+PyTorch is working well, but Tensorflow throws an exception.
 
 # Libraries Etc.
 
