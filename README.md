@@ -45,6 +45,8 @@ prediction: [
 Detected image from src/test/resources/dog_bike_car.jpg saved to: build/output
 ```
 
+![Detected objects](src/test/resources/detected-dog_bike_car.jpg?raw=true "Detected objects")
+
 # Issues
 
 PyTorch is working well, but Tensorflow throws an exception.

@@ -29,7 +29,10 @@ object ObjectDetection {
 
   val defaultFile = "src/test/resources/dog_bike_car.jpg"
 
-  def saveBoundingBoxImage(img: Image, detection: DetectedObjects) = Try {
+  def saveBoundingBoxImage(img: Image, detection: DetectedObjects,
+  input: String) = Try {
+    val inputPath = Paths.get(input) 
+    val inputName = inputPath.getFileName.toFile.getName
     val outputDir = Paths.get("build/output");
     Files.createDirectories(outputDir);
 
@@ -37,7 +40,7 @@ object ObjectDetection {
     val newImage = img.duplicate(Image.Type.TYPE_INT_ARGB)
     newImage.drawBoundingBoxes(detection);
 
-    val imagePath = outputDir.resolve("detected-dog_bike_car.png")
+    val imagePath = outputDir.resolve("detected-" + inputName)
     // OpenJDK can't save jpg with alpha channel
     newImage.save(Files.newOutputStream(imagePath), "png")
     logger.info("Detected objects image has been saved in: {}", imagePath)
@@ -66,7 +69,7 @@ object ObjectDetection {
     val model = ModelZoo.loadModel(criteria)
     val predictor = model.newPredictor()
     val detection = predictor.predict(img)
-    saveBoundingBoxImage(img, detection)
+    saveBoundingBoxImage(img, detection, filepath)
     detection
   }
 
