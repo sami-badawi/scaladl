@@ -9,9 +9,10 @@ Maybe this could be useful for Scala Spark.
 
 # Status Starter Project
 
-Ported one class, ObjectDetection.java, from DJL to ObjectDetection.Scala.
+Ported class, ObjectDetection.java, from DJL to ObjectDetection.Scala and to BaseObjectDetection.scala.
 
-
+* ObjectDetection.Scala is a direct port
+* BaseObjectDetection.scala is a port that is wrapped in a class
 
 # How to Run
 
@@ -28,6 +29,14 @@ sbt "run ~/Pictures/laptop_baby.jpg"
 
 # Run with default image and engine with engine index 1
 sbt "run src/test/resources/dog_bike_car.jpg 1"
+
+sbt "run src/test/resources/dog_bike_car.jpg 1"
+
+# Run with default image and engine with engine index 1
+sbt "runMain org.scaladl.ObjectDetection src/test/resources/dog_bike_car.jpg 1"
+
+# Run with default image and MXNet engine using BaseObjectDetection.scala
+sbt "runMain org.scaladl.object_detection.BaseObjectDetection src/test/resources/dog_bike_car.jpg MXNet"
 ```
 
 ## Output

@@ -25,13 +25,16 @@ import scala.util.Try
 /** Direct port of DJL ObjectDetection
   */
 object ObjectDetection {
-  val logger = LoggerFactory.getLogger(classOf[LoggerFactory])
+  val logger = LoggerFactory.getLogger(ObjectDetection.getClass)
 
   val defaultFile = "src/test/resources/dog_bike_car.jpg"
 
-  def saveBoundingBoxImage(img: Image, detection: DetectedObjects,
-  input: String) = Try {
-    val inputPath = Paths.get(input) 
+  def saveBoundingBoxImage(
+      img: Image,
+      detection: DetectedObjects,
+      input: String
+  ) = Try {
+    val inputPath = Paths.get(input)
     val inputName = inputPath.getFileName.toFile.getName
     val outputDir = Paths.get("build/output");
     Files.createDirectories(outputDir);
@@ -46,13 +49,18 @@ object ObjectDetection {
     logger.info("Detected objects image has been saved in: {}", imagePath)
   }
 
-  def predict(filepath: String, engineIndexOpt: Option[Int]): DetectedObjects = {
+  def predict(
+      filepath: String,
+      engineIndexOpt: Option[Int]
+  ): DetectedObjects = {
     val imageFile = Paths.get(filepath);
     val img = ImageFactory.getInstance().fromFile(imageFile)
     val engines = Engine.getAllEngines().asScala.toSeq
     println(engines.mkString("\n\nAvailable engines:\n", "\n", "\n"))
 
-    val engineName = engineIndexOpt.map(n => engines(n)).getOrElse(Engine.getInstance().getEngineName())
+    val engineName = engineIndexOpt
+      .map(n => engines(n))
+      .getOrElse(Engine.getInstance().getEngineName())
     println(s"Index: $engineIndexOpt engine: $engineName\n\n")
 
     println(s"Using engine: $engineName")
