@@ -15,6 +15,7 @@ project/project/metals.sbt
 project/project/project/metals.sbt
 project/metals.sbt
 build/output
+src/test/resources/laptop_baby.jpg
 
 # Scala-IDE specific
 

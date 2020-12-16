@@ -24,9 +24,9 @@ git clone https://github.com/sami-badawi/scaladl.git
 sbt run
 
 # Run user supplied image
-sbt "run ~/Pictures/person_coffee.png"
+sbt "run ~/Pictures/laptop_baby.jpg"
 
-# Run with default image and engine with index 1
+# Run with default image and engine with engine index 1
 sbt "run src/test/resources/dog_bike_car.jpg 1"
 ```
 
@@ -38,14 +38,13 @@ PyTorch
 TensorFlow
 
 prediction: [
-	class: "dog", probability: 0.96922, bounds: [x=0.162, y=0.357, width=0.250, height=0.545]
-	class: "bicycle", probability: 0.66656, bounds: [x=0.152, y=0.249, width=0.570, height=0.558]
-	class: "truck", probability: 0.62682, bounds: [x=0.610, y=0.131, width=0.284, height=0.167]
+class: "laptop", probability: 0.96828, bounds: [x=0.145, y=0.088, width=0.830, height=0.915]
+class: "person", probability: 0.92875, bounds: [x=-0.013, y=0.021, width=0.458, height=0.978]
 ]
-Detected image from src/test/resources/dog_bike_car.jpg saved to: build/output
+Detected image from ~/Pictures/laptop_baby.jpg saved to: build/output
 ```
 
-![Detected objects](src/test/resources/detected-dog_bike_car.jpg?raw=true "Detected objects")
+![Detected objects](src/test/resources/detected-laptop_baby.jpg?raw=true "Detected objects")
 
 # Issues
 
