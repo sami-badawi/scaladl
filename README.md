@@ -1,7 +1,7 @@
 # ScalaDL Ideomatic Scala Wrapper Around Deep Learning Framework JDL
 
 Deep learning is dominated by excellent Python frameworks.
-There is a new framework [JDL](https://github.com/awslabs/djl) that is a Java wrapper around several of those: Pytorch and TensorFlow.
+There is a new framework [JDL](https://github.com/awslabs/djl) that is a Java wrapper around several of those: PyTorch and TensorFlow.
 
 JDL has a strong Java flavor. There is an opportunity for to make a thin Scala wrapper around this.
 
@@ -35,6 +35,7 @@ sbt "run src/test/resources/dog_bike_car.jpg 1"
 ```
 Available engines:
 PyTorch
+MXNet
 TensorFlow
 
 prediction: [
@@ -48,7 +49,7 @@ Detected image from ~/Pictures/laptop_baby.jpg saved to: build/output
 
 # Issues
 
-PyTorch is working well, but Tensorflow throws an exception.
+MXNet and PyTorch is working well, but Tensorflow throws an exception.
 
 # Libraries Etc.
 

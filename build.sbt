@@ -10,8 +10,13 @@ lazy val root = project
 
     libraryDependencies ++= Seq(
       "ai.djl" % "api" % "0.8.0",
-      "ai.djl.pytorch" % "pytorch-engine" % "0.8.0",
 
+      "ai.djl.mxnet" % "mxnet-engine" % "0.8.0" % "runtime",
+      "ai.djl.mxnet" % "mxnet-model-zoo" % "0.8.0",
+      "ai.djl.mxnet" % "mxnet-native-auto" % "1.7.0-b",
+      "ai.djl.mxnet" % "mxnet-native-cu92mkl" % "1.7.0-b",
+
+      "ai.djl.pytorch" % "pytorch-engine" % "0.8.0",
       "ai.djl.pytorch" % "pytorch-model-zoo" % "0.8.0",
       "ai.djl.pytorch" % "pytorch-engine" % "0.8.0",
       "ai.djl.pytorch" % "pytorch-native-auto" % "1.6.0",
